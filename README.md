@@ -4,7 +4,7 @@ Command line manga project management tool for manga creators using unix/linux.
 ## これは何? (JP)
 端末で漫画原稿を管理する変なソフトウェアです.
 
-AzDrawing, GIMP など, 漫画原稿管理機能がついていないソフトウェアや, Krita など, 管理機能はあるが機能がシンプルでないソフトウェアを用いて原稿を作成する際に, 漫画原稿を手軽に管理するためのツールとして開発しています.
+AzDrawing, GIMP など, 漫画原稿管理機能がついていないソフトウェアや, Krita など, 管理機能はあるが機能が成熟していないソフトウェアを用いて原稿を作成する際に, 漫画原稿を手軽に管理するためのツールとして開発しています.
 
 そのためリッチな原稿管理機能がある Clip Studio や Medibang Paint Pro などが使える Windows 向けではなく, Linux/Unix ユーザー向けです.
 
@@ -25,7 +25,7 @@ So this software doesn't aim those who using Windows because rich softwares such
 
 GUI frontends are planned.
 
-I hope you'll do your work more efficient using this.
+I hope you'll do your work more efficient with this tool.
 
 ## Milestones
 - [ ] Implement core management features.
