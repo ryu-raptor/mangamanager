@@ -22,6 +22,7 @@ end
 -- モジュールの読み込み
 require "addpage"
 require "drop"
+require "restore"
 -- require "insert"
 require "info"
 -- require "move"
