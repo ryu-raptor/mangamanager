@@ -1,22 +1,37 @@
 -- manga.lua
 
 -- ユーザーの設定を読み込む
-assert(pcall(require, "setting"), "プロジェクトは開始できません: 理由: setting.lua がありません")
+require "settingloader"
+-- "プロジェクトは開始できません: 理由: setting.lua がありません"
+setting = loadSetting("setting.lua")
+
+local function getext(setting)
+    for k, v in pairs(setting) do
+        if k:match("_template$") then
+            local ext = setting[k]:match("%.([%a%d]+)$")
+            if ext then return ext end
+        end
+    end
+end
 
 -- projectinfo.lua があるかを探す
 local f = io.open("projectinfo.lua", "r")
 if f ~= nil then
     io.close(f)
-    require "projectinfo"
+    info = dofile "projectinfo.lua"
+    if info.template_ext ~= getext(setting) then
+        error("テンプレートの拡張子はプロジェクト作成後に変更しないでください: 理由: 拡張子を揃えないで済む方法を開発中のため: 解決法: 元の拡張子に直してください")
+    end
 else
     -- 初期設定をする
     info = { releasepages = {}, droppages = {}, template_ext = nil}
     -- 拡張子を取得する
-    local ext1 = setting.single_template:match("%.([%a%d]+)$")
-    local ext2 = setting.mihiraki_template:match("%.([%a%d]+)$")
-    if ext1 == nil then error("テンプレートには拡張子をつけてください: 理由: 拡張子を持たないテンプレートに対応させる方法を開発中のため") end
+    local ext = getext(setting)
+    if ext == nil then error("テンプレートには拡張子をつけてください: 理由: 拡張子を持たないテンプレートに対応させる方法を開発中のため") end
+    --[[
     if ext1 ~= ext2 then error("テンプレートの拡張子は揃えてください: 理由: 拡張子を揃えないで済む方法を開発中のため") end
-    info.template_ext = ext1
+    ]]--
+    info.template_ext = ext
 end
 
 -- モジュールの読み込み
@@ -77,7 +92,7 @@ end
 -- 状態を書き出す
 require "tabletostr"
 
-local infostr = "info = " .. tabletostr(info)
+local infostr = "return " .. tabletostr(info)
 local fh = assert(io.open("projectinfo.lua", "w"))
 fh:write(infostr)
 fh:close()
