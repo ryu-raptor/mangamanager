@@ -17,9 +17,10 @@
 ```
 
 ## コマンド詳細
-### `manga append ([page number])`
+### `manga append ([page number] ([template_name]))`
 新しくページを追加する.
 引数を指定した場合はそのページ番号でページを作成しようとする. (既にそのページがある場合は作成を中止する)
+`template_name` を指定した場合は, setting.lua のなかの `[template_name]_template` という項目のファイルを用いる. デフォルトは `single`.
 
 ### `manga insert [page number]`
 新しくページを挿入する.
