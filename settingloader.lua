@@ -9,6 +9,10 @@ local function dirname(str)
 end
 
 function loadSetting(settingFilePath) --> table
+    if not os.rename(settingFilePath, settingFilePath) then
+        error("設定ファイルが見つかりませんでした. 作成するか, inherits で指定している場合はパスが正しいか確認してください: 問題のパス: " .. settingFilePath)
+    end
+
     local tmp = dofile(settingFilePath)
 
     if tmp.inherits ~= nil then
