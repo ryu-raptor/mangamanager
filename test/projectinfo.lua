@@ -1,0 +1,1 @@
+return {template_ext = "adw", droppages = {}, releasepages = {1, 2, }, }
