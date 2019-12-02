@@ -42,7 +42,7 @@ require "restore"
 require "info"
 -- require "move"
 require "tableutil"
--- require "userinterface"
+require "userinterface"
 
 
 -- コマンドを変換する
@@ -76,12 +76,18 @@ elseif command.name == "drop" then
         show(command.args[2], "drop")
     end
 elseif command.name == "restore" then
-    restore(command.args[1], function(n)
-        selection(drop, insert)(n)
+    restore(command.args[1], function()
+        local choice = selection({{"drop", drop}, {"insert", insert}}, function (a)
+            return a[1]
+        end)
+        return choise and choise[2]
     end)
 elseif command.name == "mv" then
-    move(command.args[1], command.args[2], function(n)
-        selection(drop, insert)(n)
+    move(command.args[1], command.args[2], function()
+        local choice = selection({{"drop", drop}, {"insert", insert}}, function (a)
+            return a[1]
+        end)[2]
+        return choise and choise[2]
     end)
 elseif command.name == "open" then
     open(command.args[1])

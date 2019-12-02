@@ -34,9 +34,9 @@ function page.drop(number)
     -- id の生成
     -- 時刻を用いて生成した乱数で乱数を生成する
     math.randomseed(os.time())
-    math.randomseed(math.random(math.maxinteger))
-    local seed = math.random(math.maxinteger)
+    local seed = math.random()
     local m = md5.new()
+    print(number, seed)
     m:update(tostring(number))
     m:update(tostring(seed))
     local id = md5.tohex(m:finish())

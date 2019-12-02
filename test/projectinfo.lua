@@ -1,1 +1,1 @@
-return {template_ext = "adw", droppages = {}, releasepages = {1, 2, }, }
+return {droppages = {{origin = 4, id = "f80ee62eb159ee568c68dc1468924b95", }, }, template_ext = "adw", releasepages = {2, 3, 4, }, }
