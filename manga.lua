@@ -59,8 +59,9 @@ end
 
 -- コマンドを解釈する
 if command.name == "append" then
-    local newpagenum = shouldnumber(command.args[1]) or (table.tail(info.releasepages) or 0) + 1
-    addpage(newpagenum, nil)
+    local newpagenum = (table.tail(info.releasepages) or 0) + 1
+    local template_name = command.args[1]
+    addpage(newpagenum, nil, template_name)
 elseif command.name == "insert" then
     local inum = shouldnumber(command.args[1])
     if inum then error("insert needs page number") end
