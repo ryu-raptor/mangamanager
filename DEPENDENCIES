@@ -1,4 +1,4 @@
-luarocks
-md5
-luafilesystem
+luarocks:
+    md5 : kikito/md5.lua
+    luafilesystem
 
