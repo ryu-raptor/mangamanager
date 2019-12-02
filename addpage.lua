@@ -10,11 +10,13 @@ function addpage(pagenumber, failsafe, template_name)
     end
     -- テンプレート名
     local template_path = setting.single_template
-    for k, v in pairs(setting) do
-        local m = k:match(template_name .. "_template")
-        if m then
-            template_path = v
-            break
+    if template_name then
+        for k, v in pairs(setting) do
+            local m = k:match(template_name .. "_template")
+            if m then
+                template_path = v
+                break
+            end
         end
     end
 

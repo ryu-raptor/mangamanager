@@ -89,6 +89,8 @@ elseif command.name == "release" then
     release()
 elseif command.name == "list" then
     showinfo(nil)
+else
+    error(command.name .. " というコマンドはありません. 終了します.: 理由: 与えられたコマンドは存在しない.")
 end
 
 -- 状態を書き出す
