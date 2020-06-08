@@ -35,3 +35,7 @@ I hope you'll do your work more efficient with this tool.
 - [ ] Implement core management features.
 - [ ] Implement git integration.
 - [ ] Implement GUI frontends.
+
+## How to Use
+See Wiki.
+

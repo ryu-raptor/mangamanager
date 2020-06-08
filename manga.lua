@@ -37,11 +37,12 @@ end
 -- モジュールの読み込み
 require "addpage"
 require "drop"
+require "restore"
 -- require "insert"
 require "info"
 -- require "move"
 require "tableutil"
--- require "userinterface"
+require "userinterface"
 
 
 -- コマンドを変換する
@@ -75,12 +76,18 @@ elseif command.name == "drop" then
         show(command.args[2], "drop")
     end
 elseif command.name == "restore" then
-    restore(command.args[1], function(n)
-        selection(drop, insert)(n)
+    restore(command.args[1], function()
+        local choice = selection({{"drop", drop}, {"insert", insert}}, function (a)
+            return a[1]
+        end)
+        return choise and choise[2]
     end)
 elseif command.name == "mv" then
-    move(command.args[1], command.args[2], function(n)
-        selection(drop, insert)(n)
+    move(command.args[1], command.args[2], function()
+        local choice = selection({{"drop", drop}, {"insert", insert}}, function (a)
+            return a[1]
+        end)[2]
+        return choise and choise[2]
     end)
 elseif command.name == "open" then
     open(command.args[1])
@@ -88,6 +95,8 @@ elseif command.name == "release" then
     release()
 elseif command.name == "list" then
     showinfo(nil)
+else
+    error(command.name .. " というコマンドはありません. 終了します.: 理由: 与えられたコマンドは存在しない.")
 end
 
 -- 状態を書き出す
